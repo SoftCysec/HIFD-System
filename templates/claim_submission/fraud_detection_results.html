@@ -1,0 +1,34 @@
+<!-- templates/claim_submission/fraud_detection_results.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Fraud Detection Results{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% if claim %}
+      <h2>Claim Submission: {{ claim.claimant_name }}</h2>
+      <p>Claim Amount: {{ claim.claim_amount }}</p>
+      {% if result %}
+        {% if result.is_fraudulent %}
+          <div class="alert alert-danger" role="alert">
+            Fraud Detection Result: Fraudulent
+          </div>
+        {% else %}
+          <div class="alert alert-success" role="alert">
+            Fraud Detection Result: Not Fraudulent
+          </div>
+        {% endif %}
+        <p>Evidence: {{ result.evidence }}</p>
+      {% else %}
+        <div class="alert alert-warning" role="alert">
+          Fraud Detection Result: Not Available
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="alert alert-danger" role="alert">
+        Claim not found!
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

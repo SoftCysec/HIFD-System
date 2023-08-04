@@ -1,0 +1,23 @@
+<!-- templates/claim_submission/claim_submission.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Claim Submission{% endblock %}
+
+{% block content %}
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-lg-6">
+      <h2 class="mb-4">Claim Submission</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit Claim</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

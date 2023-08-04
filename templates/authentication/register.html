@@ -1,0 +1,22 @@
+<!-- templates/authentication/register.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-lg-4">
+      <h2 class="mb-4">Register</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Register</button>
+        <a href="{% url 'user_login' %}" class="btn btn-secondary">Login</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
